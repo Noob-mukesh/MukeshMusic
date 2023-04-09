@@ -1,6 +1,6 @@
 PING_COMMAND : ["ping", "alive"]
-START_COMMAND : ["start", "mstart"]
-HELP_COMMAND : ["help"]
+START_COMMAND : ["mstart"]
+HELP_COMMAND : ["mhelp"]
 SETTINGS_COMMAND : ["settings", "setting"]
 RELOAD_COMMAND : ["admincache", "reload"]
 GSTATS_COMMAND : ["gstats", "globalstats"]
