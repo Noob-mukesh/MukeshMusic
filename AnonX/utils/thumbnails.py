@@ -82,11 +82,11 @@ async def gen_thumb(videoid, user_id):
         x = f.resize((107, 107))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        PATH=["AnonX/assets/anonx.png","AnonX/assets/mukesh.png","AnonX/assets/mukesh2.png",
-      "AnonX/assets/mukesh1.png","AnonX/assets/mukesh3.png","AnonX/assets/mukesh4.png","AnonX/assets/mukesh5.png",
-      "AnonX/assets/mukesh6.png","AnonX/assets/mukesh7.png","AnonX/assets/mukesh8.png","AnonX/assets/mukesh9.png"]
-        randompic=random.choice(PATH)
-        bg = Image.open(f"{randompic}")
+      #  PATH=["AnonX/assets/anonx.png","AnonX/assets/mukesh.png","AnonX/assets/mukesh2.png",
+     # "AnonX/assets/mukesh1.png","AnonX/assets/mukesh3.png","AnonX/assets/mukesh4.png","AnonX/assets/mukesh5.png",
+     # "AnonX/assets/mukesh6.png","AnonX/assets/mukesh7.png","AnonX/assets/mukesh8.png","AnonX/assets/mukesh9.png"]
+     #   randompic=random.choice(PATH)
+        bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(30))
@@ -230,7 +230,7 @@ async def gen_qthumb(videoid, user_id):
       "AnonX/assets/mukesh1.png","AnonX/assets/mukesh3.png","AnonX/assets/mukesh4.png","AnonX/assets/mukesh5.png",
       "AnonX/assets/mukesh6.png","AnonX/assets/mukesh7.png","AnonX/assets/mukesh8.png","AnonX/assets/mukesh9.png"]
         randompic=random.choice(PATH)
-        bg = Image.open(f"{randompic}")
+        bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(30))
