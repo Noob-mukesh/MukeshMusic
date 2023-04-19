@@ -2,7 +2,7 @@ import asyncio
 
 from pyrogram import filters
 
-import config
+from config import OWNER_ID
 from strings import get_command
 from AnonX import app
 from AnonX.misc import SUDOERS
