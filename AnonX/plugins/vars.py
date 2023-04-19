@@ -18,66 +18,66 @@ async def varsFunc(client, message):
         "ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ... ɢᴇᴛᴛɪɴɢ ʏᴏᴜʀ ᴄᴏɴғɪɢ ᴠᴀʀɪᴀʙʟᴇs..."
     )
     v_limit = await get_video_limit()
-    MUSIC_BOT_NAME = config.MUSIC_BOT_NAME
-    up_r = f"[ʀᴇᴩᴏ]({config.UPSTREAM_REPO})"
-    up_b = config.UPSTREAM_BRANCH
-    auto_leave = config.AUTO_LEAVE_ASSISTANT_TIME
-    yt_sleep = config.YOUTUBE_DOWNLOAD_EDIT_SLEEP
-    tg_sleep = config.TELEGRAM_DOWNLOAD_EDIT_SLEEP
-    playlist_limit = config.SERVER_PLAYLIST_LIMIT
-    fetch_playlist = config.PLAYLIST_FETCH_LIMIT
-    song = config.SONG_DOWNLOAD_DURATION
-    play_duration = config.DURATION_LIMIT_MIN
-    cm = config.CLEANMODE_DELETE_MINS
-    auto_sug = config.AUTO_SUGGESTION_TIME
-    if config.AUTO_LEAVING_ASSISTANT == str(True):
+    MUSIC_BOT_NAME = MUSIC_BOT_NAME
+    up_r = f"[ʀᴇᴩᴏ]({UPSTREAM_REPO})"
+    up_b = UPSTREAM_BRANCH
+    auto_leave = AUTO_LEAVE_ASSISTANT_TIME
+    yt_sleep = YOUTUBE_DOWNLOAD_EDIT_SLEEP
+    tg_sleep = TELEGRAM_DOWNLOAD_EDIT_SLEEP
+    playlist_limit = SERVER_PLAYLIST_LIMIT
+    fetch_playlist = PLAYLIST_FETCH_LIMIT
+    song = SONG_DOWNLOAD_DURATION
+    play_duration = DURATION_LIMIT_MIN
+    cm = CLEANMODE_DELETE_MINS
+    auto_sug = AUTO_SUGGESTION_TIME
+    if AUTO_LEAVING_ASSISTANT == str(True):
         ass = "ʏᴇs"
     else:
         ass = "ɴᴏ"
-    if config.PRIVATE_BOT_MODE == str(True):
+    if PRIVATE_BOT_MODE == str(True):
         pvt = "ʏᴇs"
     else:
         pvt = "ɴᴏ"
-    if config.AUTO_SUGGESTION_MODE == str(True):
+    if AUTO_SUGGESTION_MODE == str(True):
         a_sug = "ʏᴇs"
     else:
         a_sug = "ɴᴏ"
-    if config.AUTO_DOWNLOADS_CLEAR == str(True):
+    if AUTO_DOWNLOADS_CLEAR == str(True):
         down = "ʏᴇs"
     else:
         down = "ɴᴏ"
 
-    if not config.GITHUB_REPO:
+    if not GITHUB_REPO:
         git = "ɴᴏ"
     else:
-        git = f"[ʀᴇᴩᴏ]({config.GITHUB_REPO})"
-    if not config.START_IMG_URL:
+        git = f"[ʀᴇᴩᴏ]({GITHUB_REPO})"
+    if not START_IMG_URL:
         start = "ɴᴏ"
     else:
-        start = f"[ɪᴍᴀɢᴇ]({config.START_IMG_URL})"
+        start = f"[ɪᴍᴀɢᴇ]({START_IMG_URL})"
     if not config.SUPPORT_CHANNEL:
         s_c = "ɴᴏ"
     else:
-        s_c = f"[ᴄʜᴀɴɴᴇʟ]({config.SUPPORT_CHANNEL})"
-    if not config.SUPPORT_GROUP:
+        s_c = f"[ᴄʜᴀɴɴᴇʟ]({SUPPORT_CHANNEL})"
+    if not SUPPORT_GROUP:
         s_g = "ɴᴏ"
     else:
-        s_g = f"[sᴜᴩᴩᴏʀᴛ]({config.SUPPORT_GROUP})"
-    if not config.GIT_TOKEN:
+        s_g = f"[sᴜᴩᴩᴏʀᴛ]({SUPPORT_GROUP})"
+    if not GIT_TOKEN:
         token = "ɴᴏ"
     else:
         token = "ʏᴇs"
     if (
-        not config.SPOTIFY_CLIENT_ID
-        and not config.SPOTIFY_CLIENT_SECRET
+        not SPOTIFY_CLIENT_ID
+        and not SPOTIFY_CLIENT_SECRET
     ):
         sotify = "ɴᴏ"
     else:
         sotify = "ʏᴇs"
-    owners = [str(ids) for ids in config.OWNER_ID]
+    owners = [str(ids) for ids in OWNER_ID]
     owner_id = " ,".join(owners)
-    tg_aud = convert_bytes(config.TG_AUDIO_FILESIZE_LIMIT)
-    tg_vid = convert_bytes(config.TG_VIDEO_FILESIZE_LIMIT)
+    tg_aud = convert_bytes(TG_AUDIO_FILESIZE_LIMIT)
+    tg_vid = convert_bytes(TG_VIDEO_FILESIZE_LIMIT)
     text = f"""**ᴍᴜsɪᴄ ʙᴏᴛ ᴄᴏɴғɪɢ ᴠᴀʀɪᴀʙʟᴇs:**
 
 **<u>ʙᴀsɪᴄ ᴠᴀʀɪᴀʙʟᴇs:</u>**
