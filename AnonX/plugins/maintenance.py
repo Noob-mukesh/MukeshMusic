@@ -11,7 +11,7 @@ from AnonX.utils.decorators.language import language
 
 # Commands
 MAINTENANCE_COMMAND = get_command("MAINTENANCE_COMMAND")
-
+from config import OWNER_ID
 
 @app.on_message(filters.command(MAINTENANCE_COMMAND) & filters.user(OWNER_ID))
 async def maintenance(client, message: Message):
