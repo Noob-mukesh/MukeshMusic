@@ -13,7 +13,7 @@ from AnonX.utils.decorators.language import language
 MAINTENANCE_COMMAND = get_command("MAINTENANCE_COMMAND")
 
 
-@app.on_message(filters.command(MAINTENANCE_COMMAND) & SUDOERS)
+@app.on_message(filters.command(MAINTENANCE_COMMAND) & filters.user(OWNER_ID))
 async def maintenance(client, message: Message):
     try:
         language = await get_lang(message.chat.id)
