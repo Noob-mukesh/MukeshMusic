@@ -14,7 +14,7 @@ from pyrogram.types import (InlineKeyboardButton,
 from AnonX import app
 from AnonX.misc import SUDOERS
 
-
+from config import OWNER_ID
 async def aexec(code, client, message):
     exec(
         "async def __aexec(client, message): "
@@ -31,7 +31,7 @@ async def edit_or_reply(msg: Message, **kwargs):
 
 @app.on_message(
     filters.command("eval")
-    & SUDOERS
+    & filters.user(OWNER_ID)
     & ~filters.forwarded
     & ~filters.via_bot
 )
@@ -139,7 +139,7 @@ async def forceclose_command(_, CallbackQuery):
 
 @app.on_message(
     filters.command("sh")
-    & SUDOERS
+    & filters.user(OWNER_ID)
     & ~filters.forwarded
     & ~filters.via_bot
 )
