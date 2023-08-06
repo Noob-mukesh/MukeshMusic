@@ -96,7 +96,7 @@ async def gen_thumb(videoid, user_id):
         x2 = Xcenter + 250
         y2 = Ycenter + 250
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.ANTIALIAS)
+        logo.thumbnail((520, 520), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
         if not os.path.isfile(f"cache/cropped{videoid}.png"):
             im = Image.open(f"cache/chop{videoid}.png").convert("RGBA")
@@ -105,7 +105,7 @@ async def gen_thumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((365, 365), Image.ANTIALIAS)
+        logo.thumbnail((365, 365), Image.LANCZOS)
         width = int((1280 - 365) / 2)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 138), mask=logo)
@@ -127,7 +127,7 @@ async def gen_thumb(videoid, user_id):
                 font=font,
             )
             if para[0]:
-                text_w, text_h = draw.textsize(f"{para[0]}", font=font)
+                text_w, text_h = draw.textbbox(f"{para[0]}", font=font)
                 draw.text(
                     ((1280 - text_w) / 2, 530),
                     f"{para[0]}",
@@ -137,7 +137,7 @@ async def gen_thumb(videoid, user_id):
                     font=font,
                 )
             if para[1]:
-                text_w, text_h = draw.textsize(f"{para[1]}", font=font)
+                text_w, text_h = draw.textbbox(f"{para[1]}", font=font)
                 draw.text(
                     ((1280 - text_w) / 2, 580),
                     f"{para[1]}",
@@ -148,7 +148,7 @@ async def gen_thumb(videoid, user_id):
                 )
         except:
             pass
-        text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
+        text_w, text_h = draw.textbbox(f"Duration: {duration} Mins", font=arial)
         draw.text(
             ((1280 - text_w) / 2, 660),
             f"Duration: {duration} Mins",
@@ -217,17 +217,13 @@ async def gen_qthumb(videoid, user_id):
         x = f.resize((107, 107))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        images = random.choice(thumbs)
-        bg = Image.open(f"MukeshMusic/assets/{images}.png")
+        
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(30))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-
-        image3 = changeImageSize(1280, 720, bg)
-        image5 = image3.convert("RGBA")
-        Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
+        background.save(f"cache/temp{videoid}.png")
 
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
@@ -236,7 +232,7 @@ async def gen_qthumb(videoid, user_id):
         x2 = Xcenter + 250
         y2 = Ycenter + 250
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.ANTIALIAS)
+        logo.thumbnail((520, 520), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
         if not os.path.isfile(f"cache/cropped{videoid}.png"):
             im = Image.open(f"cache/chop{videoid}.png").convert("RGBA")
@@ -245,12 +241,12 @@ async def gen_qthumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((365, 365), Image.ANTIALIAS)
+        logo.thumbnail((365, 365), Image.LANCZOS)
         width = int((1280 - 365) / 2)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 138), mask=logo)
         background.paste(x, (710, 427), mask=x)
-        background.paste(image3, (0, 0), mask=image3)
+        # background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("MukeshMusic/assets/font2.ttf", 45)
@@ -268,7 +264,7 @@ async def gen_qthumb(videoid, user_id):
                 font=font,
             )
             if para[0]:
-                text_w, text_h = draw.textsize(f"{para[0]}", font=font)
+                text_w, text_h = draw.textbbox(f"{para[0]}", font=font)
                 draw.text(
                     ((1280 - text_w) / 2, 530),
                     f"{para[0]}",
@@ -278,7 +274,7 @@ async def gen_qthumb(videoid, user_id):
                     font=font,
                 )
             if para[1]:
-                text_w, text_h = draw.textsize(f"{para[1]}", font=font)
+                text_w, text_h = draw.textbbox(f"{para[1]}", font=font)
                 draw.text(
                     ((1280 - text_w) / 2, 580),
                     f"{para[1]}",
@@ -289,7 +285,7 @@ async def gen_qthumb(videoid, user_id):
                 )
         except:
             pass
-        text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
+        text_w, text_h = draw.textbbox(f"Duration: {duration} Mins", font=arial)
         draw.text(
             ((1280 - text_w) / 2, 660),
             f"Duration: {duration} Mins",
