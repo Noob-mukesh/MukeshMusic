@@ -13,7 +13,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 
-from  config import OWNER_ID
+from  config import *
 from strings import get_command
 from MukeshMusic import app
 from MukeshMusic.misc import HAPP, SUDOERS, XCB
@@ -50,8 +50,8 @@ async def log_(client, message, _):
             link = await Anonbin(data)
             return await message.reply_text(link)
         else:
-            if os.path.exists(config.LOG_FILE_NAME):
-                log = open(config.LOG_FILE_NAME)
+            if os.path.exists(LOG_FILE_NAME):
+                log = open(LOG_FILE_NAME)
                 lines = log.readlines()
                 data = ""
                 try:
@@ -166,7 +166,7 @@ async def usage_dynos(client, message, _):
     else:
         return await message.reply_text(_["heroku_11"])
     dyno = await message.reply_text(_["heroku_12"])
-    Heroku = heroku3.from_key(config.HEROKU_API_KEY)
+    Heroku = heroku3.from_key(HEROKU_API_KEY)
     account_id = Heroku.account().id
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
@@ -175,7 +175,7 @@ async def usage_dynos(client, message, _):
     )
     headers = {
         "User-Agent": useragent,
-        "Authorization": f"Bearer {config.HEROKU_API_KEY}",
+        "Authorization": f"Bearer {HEROKU_API_KEY}",
         "Accept": "application/vnd.heroku+json; version=3.account-quotas",
     }
     path = "/accounts/" + account_id + "/actions/get-quota"
@@ -226,7 +226,7 @@ async def update_(client, message, _):
         return await response.edit(_["heroku_14"])
     except InvalidGitRepositoryError:
         return await response.edit(_["heroku_15"])
-    to_exc = f"git fetch origin {config.UPSTREAM_BRANCH} &> /dev/null"
+    to_exc = f"git fetch origin {UPSTREAM_BRANCH} &> /dev/null"
     os.system(to_exc)
     await asyncio.sleep(7)
     verification = ""
@@ -234,7 +234,7 @@ async def update_(client, message, _):
         0
     ]  # main git repository
     for checks in repo.iter_commits(
-        f"HEAD..origin/{config.UPSTREAM_BRANCH}"
+        f"HEAD..origin/{UPSTREAM_BRANCH}"
     ):
         verification = str(checks.count())
     if verification == "":
@@ -250,7 +250,7 @@ async def update_(client, message, _):
         ],
     )
     for info in repo.iter_commits(
-        f"HEAD..origin/{config.UPSTREAM_BRANCH}"
+        f"HEAD..origin/{UPSTREAM_BRANCH}"
     ):
         updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ ᴄᴏᴍᴍɪᴛᴇᴅ ᴏɴ:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
     _update_response_ = "<b>ᴀ ɴᴇᴡ ᴜᴩᴅᴀᴛᴇ ɪs ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛʜᴇ ʙᴏᴛ !</b>\n\n➣ ᴩᴜsʜɪɴɢ ᴜᴩᴅᴀᴛᴇs ɴᴏᴡ</code>\n\n**<u>ᴜᴩᴅᴀᴛᴇs:</u>**\n\n"
@@ -272,7 +272,7 @@ async def update_(client, message, _):
                 try:
                     await app.send_message(
                         x,
-                        f"{config.MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                        f"{MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
                     )
                     await remove_active_chat(x)
                     await remove_active_video_chat(x)
@@ -290,7 +290,7 @@ async def update_(client, message, _):
                 f"{nrs.text}\n\nsᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ ᴡʜᴇɴ ᴛʀɪᴇᴅ ᴛᴏ ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴍᴜsɪᴄ ʙᴏᴛ, ᴩʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʟᴏɢs ᴛᴏ ᴋɴᴏᴡ ᴡʜᴀᴛ's ᴡʀᴏɴɢ."
             )
             return await app.send_message(
-                config.LOG_GROUP_ID,
+                LOG_GROUP_ID,
                 f"ᴀɴ ᴇxᴄᴇᴩᴛɪᴏɴ ᴏᴄᴄᴜʀᴇᴅ ᴀᴛ #ᴜᴩᴅᴀᴛᴇʀ ᴅᴜᴇ ᴛᴏ: <code>{err}</code>",
             )
     else:
@@ -299,7 +299,7 @@ async def update_(client, message, _):
             try:
                 await app.send_message(
                     x,
-                    f"{config.MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                    f"{MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
                 )
                 await remove_active_chat(x)
                 await remove_active_video_chat(x)
@@ -321,7 +321,7 @@ async def restart_(_, message):
         try:
             await app.send_message(
                 x,
-                f"{config.MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                f"{MUSIC_BOT_NAME} ʜᴀs ᴊᴜsᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ʜᴇʀsᴇʟғ ғᴏʀ ᴜᴩᴅᴀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ. sᴏʀʀʏ ғᴏʀ ᴛʜᴇ ɪssᴜᴇs.\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
             )
             await remove_active_chat(x)
             await remove_active_video_chat(x)
