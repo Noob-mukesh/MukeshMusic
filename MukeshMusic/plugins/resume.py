@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from strings import get_command
 from MukeshMusic import app
-from MukeshMusic.core.call import Anon
+from MukeshMusic.core.call import Mukesh
 from MukeshMusic.utils.database import is_music_playing, music_on
 from MukeshMusic.utils.decorators import AdminRightsCheck
 from MukeshMusic.utils.inline.play import close_keyboard
@@ -26,7 +26,7 @@ async def resume_com(cli, message: Message, _, chat_id):
     if await is_music_playing(chat_id):
         return await message.reply_text(_["admin_3"])
     await music_on(chat_id)
-    await Anon.resume_stream(chat_id)
+    await Mukesh.resume_stream(chat_id)
     await message.reply_text(
         _["admin_4"].format(message.from_user.first_name),
         reply_markup=close_keyboard

@@ -13,7 +13,7 @@ VARS_COMMAND = get_command("VARS_COMMAND")
 
 
 @app.on_message(filters.command(VARS_COMMAND) & filters.user(OWNER_ID))
-async def varsFunc(client, message):
+async def varsFunc(_, message):
     mystic = await message.reply_text(
         "ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ... ɢᴇᴛᴛɪɴɢ ʏᴏᴜʀ ᴄᴏɴғɪɢ ᴠᴀʀɪᴀʙʟᴇs..."
     )
@@ -29,7 +29,7 @@ async def varsFunc(client, message):
     song = SONG_DOWNLOAD_DURATION
     play_duration = DURATION_LIMIT_MIN
     cm = CLEANMODE_DELETE_MINS
-    auto_sug = AUTO_SUGGESTION_TIME
+
     if AUTO_LEAVING_ASSISTANT == str(True):
         ass = "ʏᴇs"
     else:
@@ -38,24 +38,16 @@ async def varsFunc(client, message):
         pvt = "ʏᴇs"
     else:
         pvt = "ɴᴏ"
-    if AUTO_SUGGESTION_MODE == str(True):
-        a_sug = "ʏᴇs"
-    else:
-        a_sug = "ɴᴏ"
+
     if AUTO_DOWNLOADS_CLEAR == str(True):
         down = "ʏᴇs"
     else:
         down = "ɴᴏ"
-
-    if not GITHUB_REPO:
-        git = "ɴᴏ"
-    else:
-        git = f"[ʀᴇᴩᴏ]({GITHUB_REPO})"
     if not START_IMG_URL:
         start = "ɴᴏ"
     else:
         start = f"[ɪᴍᴀɢᴇ]({START_IMG_URL})"
-    if not config.SUPPORT_CHANNEL:
+    if not SUPPORT_CHANNEL:
         s_c = "ɴᴏ"
     else:
         s_c = f"[ᴄʜᴀɴɴᴇʟ]({SUPPORT_CHANNEL})"
@@ -96,8 +88,6 @@ async def varsFunc(client, message):
 **<u>ʙᴏᴛ ᴠᴀʀɪᴀʙʟᴇs:</u>**
 **ᴀᴜᴛᴏ_ʟᴇᴀᴠɪɴɢ_ᴀssɪsᴛᴀɴᴛ** : `{ass}`
 **ᴀssɪsᴛᴀɴᴛ_ʟᴇᴀᴠᴇ_ᴛɪᴍᴇ** : `{auto_leave} sᴇᴄᴏɴᴅs`
-**ᴀᴜᴛᴏ_sᴜɢɢᴇsᴛɪᴏɴ_ᴍᴏᴅᴇ** :` {a_sug}`
-**ᴀᴜᴛᴏ_sᴜɢɢᴇsᴛɪᴏɴ_ᴛɪᴍᴇ** : `{auto_sug} sᴇᴄᴏɴᴅs`
 **ᴀᴜᴛᴏ_ᴅᴏᴡɴʟᴏᴀᴅs_ᴄʟᴇᴀʀ** : `{down}`
 **ᴩʀɪᴠᴀᴛᴇ_ʙᴏᴛ_ᴍᴏᴅᴇ** : `{pvt}`
 **ʏᴏᴜᴛᴜʙᴇ_ᴇᴅɪᴛ_sʟᴇᴇᴩ** : `{yt_sleep} sᴇᴄᴏɴᴅs`

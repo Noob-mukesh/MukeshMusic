@@ -3,7 +3,7 @@ from datetime import datetime
 
 import config
 from MukeshMusic import app
-from MukeshMusic.core.call import Anon, autoend
+from MukeshMusic.core.call import Mukesh, autoend
 from MukeshMusic.utils.database import (get_client, is_active_chat,
                                        is_autoend)
 
@@ -64,7 +64,7 @@ async def auto_end():
                     continue
                 autoend[chat_id] = {}
                 try:
-                    await Anon.stop_stream(chat_id)
+                    await Mukesh.stop_stream(chat_id)
                 except:
                     continue
                 try:

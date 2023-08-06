@@ -6,7 +6,7 @@ from pyrogram.types import CallbackQuery, Message
 from config import BANNED_USERS, MUSIC_BOT_NAME, adminlist, lyrical
 from strings import get_command
 from MukeshMusic import app
-from MukeshMusic.core.call import Anon
+from MukeshMusic.core.call import Mukesh
 from MukeshMusic.misc import db
 from MukeshMusic.utils.database import get_authuser_names, get_cmode
 from MukeshMusic.utils.decorators import (ActualAdminCB, AdminActual,
@@ -60,7 +60,7 @@ async def restartbot(client, message: Message, _):
     await asyncio.sleep(1)
     try:
         db[message.chat.id] = []
-        await Anon.stop_stream(message.chat.id)
+        await Mukesh.stop_stream(message.chat.id)
     except:
         pass
     chat_id = await get_cmode(message.chat.id)
@@ -71,7 +71,7 @@ async def restartbot(client, message: Message, _):
             pass
         try:
             db[chat_id] = []
-            await Anon.stop_stream(chat_id)
+            await Mukesh.stop_stream(chat_id)
         except:
             pass
     return await mystic.edit_text(
