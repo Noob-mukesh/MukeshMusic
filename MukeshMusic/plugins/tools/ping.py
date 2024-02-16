@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from MukeshMusic import app
-from MukeshMusic.core.call import Anony
+from MukeshMusic.core.call import Mukesh
 from MukeshMusic.utils import bot_sys_stats
 from MukeshMusic.utils.decorators.language import language
 from MukeshMusic.utils.inline import supp_markup
@@ -19,7 +19,7 @@ async def ping_com(client, message: Message, _):
         photo=PING_IMG_URL,
         caption=_["ping_1"].format(app.mention),
     )
-    pytgping = await Anony.ping()
+    pytgping = await Mukesh.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
     await response.edit_text(
