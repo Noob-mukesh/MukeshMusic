@@ -5,7 +5,7 @@ from pyrogram.enums import ChatType
 
 import config
 from MukeshMusic import app
-from MukeshMusic.core.call import Anony, autoend
+from MukeshMusic.core.call import Mukesh, autoend
 from MukeshMusic.utils.database import get_client, is_active_chat, is_autoend
 
 
@@ -59,7 +59,7 @@ async def auto_end():
                     continue
                 autoend[chat_id] = {}
                 try:
-                    await Anony.stop_stream(chat_id)
+                    await Mukesh.stop_stream(chat_id)
                 except:
                     continue
                 try:
