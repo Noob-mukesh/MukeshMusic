@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from MukeshMusic import YouTube, app
-from MukeshMusic.core.call import Anony
+from MukeshMusic.core.call import Mukesh
 from MukeshMusic.misc import db
 from MukeshMusic.utils import AdminRightsCheck, seconds_to_min
 from MukeshMusic.utils.inline import close_markup
@@ -56,7 +56,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
     if "index_" in file_path:
         file_path = playing[0]["vidid"]
     try:
-        await Anony.seek_stream(
+        await Mukesh.seek_stream(
             chat_id,
             file_path,
             seconds_to_min(to_seek),
