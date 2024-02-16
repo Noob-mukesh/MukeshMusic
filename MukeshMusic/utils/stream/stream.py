@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup
 
 import config
 from MukeshMusic import Carbon, YouTube, app
-from MukeshMusic.core.call import Anony
+from MukeshMusic.core.call import Mukesh
 from MukeshMusic.misc import db
 from MukeshMusic.utils.database import add_active_video_chat, is_active_chat
 from MukeshMusic.utils.exceptions import AssistantErr
@@ -32,7 +32,7 @@ async def stream(
     if not result:
         return
     if forceplay:
-        await Anony.force_stop_stream(chat_id)
+        await Mukesh.force_stop_stream(chat_id)
     if streamtype == "playlist":
         msg = f"{_['play_19']}\n\n"
         count = 0
@@ -79,7 +79,7 @@ async def stream(
                     )
                 except:
                     raise AssistantErr(_["play_14"])
-                await Anony.join_call(
+                await Mukesh.join_call(
                     chat_id,
                     original_chat_id,
                     file_path,
@@ -165,7 +165,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Anony.join_call(
+            await Mukesh.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -225,7 +225,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Anony.join_call(chat_id, original_chat_id, file_path, video=None)
+            await Mukesh.join_call(chat_id, original_chat_id, file_path, video=None)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -277,7 +277,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Anony.join_call(chat_id, original_chat_id, file_path, video=status)
+            await Mukesh.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -333,7 +333,7 @@ async def stream(
             n, file_path = await YouTube.video(link)
             if n == 0:
                 raise AssistantErr(_["str_3"])
-            await Anony.join_call(
+            await Mukesh.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -391,7 +391,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Anony.join_call(
+            await Mukesh.join_call(
                 chat_id,
                 original_chat_id,
                 link,
