@@ -23,7 +23,15 @@ from MukeshMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
-
+@app.on_message(group=5)
+async def save_db(_, m):
+    try:
+        if m.chat.type == ChatType.PRIVATE:
+            await add_served_user(m.from_user.id)
+        else:
+            return await add_served_chat(m.chat.id)   
+    except Exception as e:
+        await m.reply(e)
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
